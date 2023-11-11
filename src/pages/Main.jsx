@@ -3,20 +3,39 @@ import React from 'react';
 import Header from '../components/Header';
 import Search from '../components/Search';
 import Filter from '../components/Filter';
+import CountryCard from '../components/CountryCard';
+
+import data from '../assets/data.json';
 
 function Main() {
+  // Temporary data to style countrycard component
+  const slicedData = data.slice(0, 12);
   return (
     <>
       <Header />
-      <div className="container">
-        <div className="search-filter">
-          <div className="search-filter__row">
-            <Search />
-            <Filter />
+      <main className="main">
+        <div className="container">
+          <div className="search-filter">
+            <div className="search-filter__row">
+              <Search />
+              <Filter />
+            </div>
           </div>
-          <div className="countries"></div>
+          <div className="countries">
+            {slicedData.map((item) => {
+              return (
+                <CountryCard
+                  title={item.name}
+                  flag={item.flag}
+                  population={item.population}
+                  region={item.region}
+                  capital={item.capital}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

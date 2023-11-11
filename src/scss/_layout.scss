@@ -3,3 +3,25 @@
     margin: 0 auto;
     padding: 0 5px;
 }
+
+.countries {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center;  
+    gap: 2rem;
+    padding: 2rem 0;
+    @media (max-width: 1230px) {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 4rem;
+    }
+    @media (max-width: 998px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 670px) {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+}
