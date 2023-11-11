@@ -1,0 +1,10 @@
+.header {
+    background-color: $dark-blue;
+    padding: 10px 0;
+    &__row {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__logo {}
+    &__icon {}
+}
