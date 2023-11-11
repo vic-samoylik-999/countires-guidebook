@@ -1,4 +1,5 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
 
 import Header from '../components/Header';
 import Search from '../components/Search';
@@ -25,6 +26,7 @@ function Main() {
             {slicedData.map((item) => {
               return (
                 <CountryCard
+                  key={nanoid()}
                   title={item.name}
                   flag={item.flag}
                   population={item.population}
