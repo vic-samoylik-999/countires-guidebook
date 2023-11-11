@@ -1,7 +1,11 @@
 @import './variables';
-@import './components/all';
+@import "./libs/normalize";
 @import './layout';
+@import './components/all';
 
 body {
-    font-family: 'Nunito Sans', sans-serif; 
+    font-family: 'Nunito Sans', sans-serif;
+    color: $even-darker-blue;
+    background-color: $light-gray;
+    font-size: 14px;
 }
