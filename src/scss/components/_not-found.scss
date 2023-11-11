@@ -1,0 +1,22 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    row-gap: 1rem;
+    &__emoji {
+        font-size: 62px;
+    }
+    &__text {
+        font-size: 24px;
+    }
+    & a {
+        font-size: 18px;
+        transition: .5s ease;
+        &:hover {
+            color: lightseagreen;
+            transition: .5s ease;
+        }
+    }
+}

@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Main from './pages/Main';
+import NotFound from './pages/NotFound';
 import './scss/main.scss';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
+    errorElement: <NotFound />,
   },
 ]);
 
