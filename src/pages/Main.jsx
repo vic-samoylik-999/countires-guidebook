@@ -27,6 +27,7 @@ function Main() {
               return (
                 <CountryCard
                   key={nanoid()}
+                  countryCode={item.alpha3Code}
                   title={item.name}
                   flag={item.flag}
                   population={item.population}

@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function CountryCard({ title, flag, population, region, capital }) {
+  const slug = title.toLowerCase().split(' ').join('-');
   return (
-    <div className="country-card">
+    <Link to={`/${slug}`} className="country-card">
       <div className="country-card__flag">
         <img src={flag} alt={`${title} flag`} />
       </div>
@@ -18,7 +20,7 @@ function CountryCard({ title, flag, population, region, capital }) {
           <span>Capital:</span> {capital}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 
