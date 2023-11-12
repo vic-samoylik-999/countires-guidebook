@@ -1,14 +1,14 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 5px;
+    padding: 0 10px;
 }
 
 .countries {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
-    justify-items: center;  
+    justify-items: stretch;  
     gap: 2rem;
     padding: 2rem 0;
     @media (max-width: 1230px) {
@@ -22,6 +22,11 @@
         display: flex;
         flex-direction: column;
     }
+}
 
-
+.search-filter {
+    padding-top: 3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
 }

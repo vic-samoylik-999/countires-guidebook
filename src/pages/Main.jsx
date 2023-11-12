@@ -17,10 +17,8 @@ function Main() {
       <main className="main">
         <div className="container">
           <div className="search-filter">
-            <div className="search-filter__row">
-              <Search />
-              <Filter />
-            </div>
+            <Search />
+            <Filter />
           </div>
           <div className="countries">
             {slicedData.map((item) => {
