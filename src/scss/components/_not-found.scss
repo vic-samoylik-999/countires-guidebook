@@ -14,9 +14,16 @@
     & a {
         font-size: 18px;
         transition: .5s ease;
+        text-align: center;
         &:hover {
             color: lightseagreen;
             transition: .5s ease;
+        }
+        & p:first-child {
+            margin-bottom: 1rem;
+        }
+        & p:last-child {
+            font-size: 38px;
         }
     }
 }
