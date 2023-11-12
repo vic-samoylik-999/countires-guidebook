@@ -2,15 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Main from './pages/Main';
+import MainPage from './pages/MainPage';
 import NotFound from './pages/NotFound';
+import CountryPage from './pages/CountryPage';
 import './scss/main.scss';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Main />,
+    element: <MainPage />,
     errorElement: <NotFound />,
+  },
+  {
+    // temporary solution to layout and style page and have access to it
+    path: 'item',
+    element: <CountryPage />,
   },
 ]);
 
