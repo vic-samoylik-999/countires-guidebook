@@ -1,75 +1,85 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
 import { Link } from 'react-router-dom';
 
 import backIcon from '../assets/back-icon.svg';
 
+const fakeData = {
+  flag: 'https://flagcdn.com/ax.svg',
+  name: 'Åland Islands',
+  nativeName: 'Åland',
+  population: 28875,
+  region: 'Europe',
+  subRegion: 'Northern Europe',
+  capital: 'Mariehamn',
+  topLevelDomain: ['.ax'],
+  currencies: 'Euro',
+  languages: 'Swedish',
+  borderCountries: ['IRN', 'PAK', 'TKM', 'UZB', 'TJK', 'CHN'],
+};
+
 function CountryDescribtion() {
-  const fakeData = {
-    flag: 'https://flagcdn.com/ax.svg',
-    name: 'Åland Islands',
-    nativeName: 'Åland',
-    population: 28875,
-    region: 'Europe',
-    subRegion: 'Northern Europe',
-    capital: 'Mariehamn',
-    topLevelDomain: ['.ax'],
-    currencies: 'Euro',
-    languages: 'Swedish',
-    borderCountries: ['IRN', 'PAK', 'TKM', 'UZB', 'TJK', 'CHN'],
-  };
   return (
     <main className="country">
-      <button className="country__backBtn">
+      <Link to="/" className="country__backBtn">
         <img src={backIcon} alt="Back icon" />
         Back
-      </button>
+      </Link>
       <div className="country__row">
         <div className="country__flag">
           <img src={fakeData.flag} alt={`${fakeData.name} flag`} />
         </div>
         <div className="country__info info">
           <h2 className="info__title">{fakeData.name}</h2>
-          {/* <div className="info__misc">
+          <div className="info__misc">
+            <div className="info__column">
               <p className="info__text">
-                <span></span>
-                {fakeData}
+                <span>Native Name: </span>
+                {fakeData.nativeName}
               </p>
               <p className="info__text">
-                <span></span>
-                {fakeData}
+                <span>Population: </span>
+                {fakeData.population}
               </p>
               <p className="info__text">
-                <span></span>
-                {fakeData}
+                <span>Region: </span>
+                {fakeData.region}
               </p>
               <p className="info__text">
-                <span></span>
-                {fakeData}
+                <span>Sub Region: </span>
+                {fakeData.subRegion}
               </p>
               <p className="info__text">
-                <span></span>
-                {fakeData}
+                <span>Capital: </span>
+                {fakeData.capital}
+              </p>
+            </div>
+            <div className="info__column">
+              <p className="info__text">
+                <span>Top Level Domain: </span>
+                {fakeData.topLevelDomain}
               </p>
               <p className="info__text">
-                <span></span>
-                {fakeData}
+                <span>Currencies: </span>
+                {fakeData.currencies}
               </p>
               <p className="info__text">
-                <span></span>
-                {fakeData}
+                <span>Languages: </span>
+                {fakeData.languages}
               </p>
-              <p className="info__text">
-                <span></span>
-                {fakeData}
-              </p>
-            </div> */}
+            </div>
+          </div>
           <div className="info__borders">
-            <p className="info__text">
-              <span>Border Countries</span>
+            <span>Border Countries:</span>
+            <div className="info__links">
               {fakeData.borderCountries.map((item) => {
-                return <Link to={`/country/${item}`}>{item}</Link>;
+                return (
+                  <Link className="info__link" to={`/country/${item}`} key={nanoid()}>
+                    {item}
+                  </Link>
+                );
               })}
-            </p>
+            </div>
           </div>
         </div>
       </div>

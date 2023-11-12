@@ -7,7 +7,9 @@ function CountryPage() {
   return (
     <>
       <Header />
-      <CountryDescribtion />
+      <div className="container">
+        <CountryDescribtion />
+      </div>
     </>
   );
 }
