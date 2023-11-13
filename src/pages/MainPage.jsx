@@ -60,7 +60,7 @@ export default function Main() {
         );
       });
 
-  const skeletons = [...Array(12)].map(() => <SkeletonCard />);
+  const skeletons = [...Array(12)].map(() => <SkeletonCard key={nanoid()} />);
 
   return (
     <>
