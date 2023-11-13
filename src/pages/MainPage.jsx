@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Search from '../components/Search';
 import Filter from '../components/Filter';
 import CountryCard from '../components/CountryCard';
+import SkeletonCard from '../components/SkeletonCard';
 
 function Main() {
   const [countriesData, setCountriesData] = React.useState([]);
@@ -19,6 +20,22 @@ function Main() {
     console.log(countriesData);
   }, []);
 
+  const countriesElements = countriesData.map((item) => {
+    return (
+      <CountryCard
+        key={nanoid()}
+        countryCode={item.cca3}
+        title={item.name.official}
+        flag={item.flags.svg}
+        population={item.population}
+        region={item.region}
+        capital={item.capital}
+      />
+    );
+  });
+
+  const skeletons = [...Array(12)].map(() => <SkeletonCard />);
+
   return (
     <>
       <Header />
@@ -29,19 +46,7 @@ function Main() {
             <Filter />
           </div>
           <div className="countries">
-            {countriesData.map((item) => {
-              return (
-                <CountryCard
-                  key={nanoid()}
-                  countryCode={item.cca3}
-                  title={item.name.official}
-                  flag={item.flags.svg}
-                  population={item.population}
-                  region={item.region}
-                  capital={item.capital}
-                />
-              );
-            })}
+            {countriesData.length > 0 ? countriesElements : skeletons}
           </div>
         </div>
       </main>
