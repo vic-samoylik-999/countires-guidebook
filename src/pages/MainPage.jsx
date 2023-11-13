@@ -12,6 +12,10 @@ const SearchContext = React.createContext();
 export default function Main() {
   const [countriesData, setCountriesData] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
+  // Decide to except this part - searching with api /name/{name} is too slow, got to use ternary and .filter.map solution
+  // const url = searchValue
+  //   ? `https://restcountries.com/v3.1/name/${searchValue}`
+  //   : 'https://restcountries.com/v3.1/all?fields=name,flags,cca3,population,region,capital';
   const url = 'https://restcountries.com/v3.1/all?fields=name,flags,cca3,population,region,capital';
   React.useEffect(() => {
     async function getCountries(url) {
@@ -22,19 +26,39 @@ export default function Main() {
     getCountries(url);
   }, []);
 
-  const countriesElements = countriesData.map((item) => {
-    return (
-      <CountryCard
-        key={nanoid()}
-        countryCode={item.cca3}
-        title={item.name.official}
-        flag={item.flags.svg}
-        population={item.population}
-        region={item.region}
-        capital={item.capital}
-      />
-    );
-  });
+  const countriesElements = searchValue
+    ? countriesData
+        .filter(
+          (item) =>
+            item.name.official.toLowerCase().includes(searchValue.toLowerCase()) ||
+            item.name.common.toLowerCase().includes(searchValue.toLowerCase()),
+        )
+        .map((item) => {
+          return (
+            <CountryCard
+              key={nanoid()}
+              countryCode={item.cca3}
+              title={item.name.official}
+              flag={item.flags.svg}
+              population={item.population}
+              region={item.region}
+              capital={item.capital}
+            />
+          );
+        })
+    : countriesData.map((item) => {
+        return (
+          <CountryCard
+            key={nanoid()}
+            countryCode={item.cca3}
+            title={item.name.official}
+            flag={item.flags.svg}
+            population={item.population}
+            region={item.region}
+            capital={item.capital}
+          />
+        );
+      });
 
   const skeletons = [...Array(12)].map(() => <SkeletonCard />);
 
