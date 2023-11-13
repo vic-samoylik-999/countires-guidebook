@@ -7,8 +7,8 @@
 .countries {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    align-items: center;
-    justify-items: stretch;  
+    // align-items: center;
+    // justify-items: stretch;  
     gap: 2rem;
     padding: 2rem 0;
     @media (max-width: 1230px) {
