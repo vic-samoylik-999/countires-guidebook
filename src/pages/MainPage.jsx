@@ -12,15 +12,14 @@ const SearchContext = React.createContext();
 export default function Main() {
   const [countriesData, setCountriesData] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
+  const url = 'https://restcountries.com/v3.1/all?fields=name,flags,cca3,population,region,capital';
   React.useEffect(() => {
     async function getCountries(url) {
       const responce = await fetch(url);
       const data = await responce.json();
       setCountriesData(data);
     }
-    getCountries(
-      'https://restcountries.com/v3.1/all?fields=name,flags,cca3,population,region,capital',
-    );
+    getCountries(url);
   }, []);
 
   const countriesElements = countriesData.map((item) => {
