@@ -6,11 +6,19 @@ import Search from '../components/Search';
 import Filter from '../components/Filter';
 import CountryCard from '../components/CountryCard';
 
-import data from '../assets/data.json';
-
 function Main() {
-  // Temporary data to style countrycard component
-  const slicedData = data.slice(0, 12);
+  const [countriesData, setCountriesData] = React.useState([]);
+
+  React.useEffect(() => {
+    async function getCountries(url) {
+      const responce = await fetch(url);
+      const data = await responce.json();
+      setCountriesData(data);
+    }
+    getCountries('https://restcountries.com/v3.1/all');
+    console.log(countriesData);
+  }, []);
+
   return (
     <>
       <Header />
@@ -21,13 +29,13 @@ function Main() {
             <Filter />
           </div>
           <div className="countries">
-            {slicedData.map((item) => {
+            {countriesData.map((item) => {
               return (
                 <CountryCard
                   key={nanoid()}
-                  countryCode={item.alpha3Code}
-                  title={item.name}
-                  flag={item.flag}
+                  countryCode={item.cca3}
+                  title={item.name.official}
+                  flag={item.flags.svg}
                   population={item.population}
                   region={item.region}
                   capital={item.capital}
