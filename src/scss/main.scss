@@ -21,8 +21,12 @@ body {
 ::-webkit-scrollbar-thumb {
     background-color: hsl(0, 0%, 86%);
     border-radius: .5rem;
+    cursor: pointer;
+    transition: .3 ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: $dark-gray;
+    background-color: hsl(0, 0%, 77%);
+    transition: .3 ease;
+
 }

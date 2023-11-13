@@ -1,25 +1,47 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
+
+import dropdownIcon from '../assets/dropdownArrow.svg';
 
 function Filter() {
-  const [countriesFilter, setCountriesFilter] = React.useState('');
-  console.log(countriesFilter);
+  const [currentSortChoise, setCurrentSortChoise] = React.useState(0);
+  const [isSelecting, setIsSelecting] = React.useState(false);
+
+  const filterValues = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+
+  const changeFilter = (event) => {
+    setCurrentSortChoise(event.target.id);
+    setIsSelecting(false);
+  };
+
   return (
     <section className="filter">
-      <select
-        value={countriesFilter}
-        onChange={(event) => setCountriesFilter(event.target.value)}
-        name="countries-filter"
-      >
-        <option value="" disabled selected>
-          Filter by Region
-        </option>
-        <option value="all">All</option>
-        <option value="africa">Africa</option>
-        <option value="america">America</option>
-        <option value="asia">Asia</option>
-        <option value="europe">Europe</option>
-        <option value="oceania">Oceania</option>
-      </select>
+      <div className="filter__holder" onClick={() => setIsSelecting((prev) => !prev)}>
+        <p className="filter__holder-text">
+          {currentSortChoise > 0 ? filterValues[currentSortChoise] : 'Filter by Region'}
+        </p>
+        <img
+          className={isSelecting ? 'filter__holder-icon active' : 'filter__holder-icon'}
+          src={dropdownIcon}
+          alt="Dropdown Icon"
+        />
+      </div>
+      {isSelecting && (
+        <ul className="filter__list">
+          {filterValues.map((item, index) => {
+            return (
+              <li
+                className="filter__list-item"
+                id={index}
+                onClick={(event) => changeFilter(event)}
+                key={nanoid()}
+              >
+                {item}
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </section>
   );
 }

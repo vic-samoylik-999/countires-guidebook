@@ -9,11 +9,12 @@
         border-radius: 9px;
         box-shadow: 2px 2px 15px #b3b3b3;
         transition: .4s ease;
+        border: thin solid transparent;
         &::placeholder {
             color: $dark-gray;
         }
         &:focus {
-            border-color: $even-darker-blue;
+            border-color: $dark-gray;
             transition: .4s ease;
             box-shadow: 2px 2px 15px #b3b3b3;
             
