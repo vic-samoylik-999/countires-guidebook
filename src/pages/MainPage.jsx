@@ -7,17 +7,20 @@ import Filter from '../components/Filter';
 import CountryCard from '../components/CountryCard';
 import SkeletonCard from '../components/SkeletonCard';
 
-function Main() {
-  const [countriesData, setCountriesData] = React.useState([]);
+const SearchContext = React.createContext();
 
+export default function Main() {
+  const [countriesData, setCountriesData] = React.useState([]);
+  const [searchValue, setSearchValue] = React.useState('');
   React.useEffect(() => {
     async function getCountries(url) {
       const responce = await fetch(url);
       const data = await responce.json();
       setCountriesData(data);
     }
-    getCountries('https://restcountries.com/v3.1/all');
-    console.log(countriesData);
+    getCountries(
+      'https://restcountries.com/v3.1/all?fields=name,flags,cca3,population,region,capital',
+    );
   }, []);
 
   const countriesElements = countriesData.map((item) => {
@@ -41,17 +44,19 @@ function Main() {
       <Header />
       <main className="main">
         <div className="container">
-          <div className="search-filter">
-            <Search />
-            <Filter />
-          </div>
-          <div className="countries">
-            {countriesData.length > 0 ? countriesElements : skeletons}
-          </div>
+          <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+            <div className="search-filter">
+              <Search />
+              <Filter />
+            </div>
+            <div className="countries">
+              {countriesData.length > 0 ? countriesElements : skeletons}
+            </div>
+          </SearchContext.Provider>
         </div>
       </main>
     </>
   );
 }
 
-export default Main;
+export { SearchContext };

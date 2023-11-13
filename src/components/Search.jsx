@@ -1,9 +1,11 @@
 import React from 'react';
+import { SearchContext } from '../pages/MainPage';
+
 import searchIcon from '../assets/search-icon.svg';
 import closeIcon from '../assets/close-icon.svg';
 
 function Search() {
-  const [searchValue, setSearchValue] = React.useState('');
+  const { searchValue, setSearchValue } = React.useContext(SearchContext);
   return (
     <section className="search">
       <input
