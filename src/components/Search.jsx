@@ -1,11 +1,11 @@
 import React from 'react';
-import { SearchContext } from '../pages/MainPage';
+import { SearchAndFilterContext } from '../pages/MainPage';
 
 import searchIcon from '../assets/search-icon.svg';
 import closeIcon from '../assets/close-icon.svg';
 
 function Search() {
-  const { searchValue, setSearchValue } = React.useContext(SearchContext);
+  const { searchValue, setSearchValue } = React.useContext(SearchAndFilterContext);
   return (
     <section className="search">
       <input

@@ -1,14 +1,12 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+import { SearchAndFilterContext, filterValues } from '../pages/MainPage';
 
 import dropdownIcon from '../assets/dropdownArrow.svg';
 
 function Filter() {
-  const [currentSortChoise, setCurrentSortChoise] = React.useState(0);
   const [isSelecting, setIsSelecting] = React.useState(false);
-
-  const filterValues = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
-
+  const { currentSortChoise, setCurrentSortChoise } = React.useContext(SearchAndFilterContext);
   const changeFilter = (event) => {
     setCurrentSortChoise(event.target.id);
     setIsSelecting(false);
