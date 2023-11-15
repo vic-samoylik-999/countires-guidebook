@@ -1,5 +1,6 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Search from '../components/Search';
@@ -55,16 +56,19 @@ export default function Main() {
           );
         })
     : countriesData.map((item) => {
+        const slug = item.name.official.toLowerCase().split(' ').join('-');
         return (
-          <CountryCard
-            key={nanoid()}
-            countryCode={item.cca3}
-            title={item.name.official}
-            flag={item.flags.svg}
-            population={item.population}
-            region={item.region}
-            capital={item.capital}
-          />
+          <Link to={`/${slug}`} className="country-card">
+            <CountryCard
+              key={nanoid()}
+              countryCode={item.cca3}
+              title={item.name.official}
+              flag={item.flags.svg}
+              population={item.population}
+              region={item.region}
+              capital={item.capital}
+            />
+          </Link>
         );
       });
 
