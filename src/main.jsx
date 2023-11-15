@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     // temporary solution to layout and style page and have access to it
-    path: 'item',
+    path: '/:slug',
     element: <CountryPage />,
   },
 ]);
