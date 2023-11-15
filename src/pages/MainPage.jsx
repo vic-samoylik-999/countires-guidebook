@@ -25,7 +25,8 @@ export default function Main() {
   let url =
     currentSortChoise > 0
       ? baseUrl + `region/${filterValues[currentSortChoise].toLowerCase()}`
-      : baseUrl + 'all?fields=name,flags,cca3,population,region,capital';
+      : baseUrl +
+        'all?fields=name,flags,cca3,population,region,subregion,capital,tld,currencies,languages,borders';
   React.useEffect(() => {
     async function getCountries(url) {
       const responce = await fetch(url);
@@ -58,7 +59,24 @@ export default function Main() {
     : countriesData.map((item) => {
         const slug = item.name.official.toLowerCase().split(' ').join('-');
         return (
-          <Link to={`/${slug}`} className="country-card">
+          <Link
+            to={`/${slug}`}
+            key={nanoid()}
+            state={{
+              flag: item.flags.svg,
+              name: item.name.official,
+              nativeName: item.name.common,
+              population: item.population.toLocaleString(),
+              region: item.region,
+              subregion: item.subregion,
+              capital: item.capital,
+              topLevelDomains: item.tld,
+              currencies: item.currencies,
+              languages: item.languages,
+              borders: item.borders,
+            }}
+            className="country-card"
+          >
             <CountryCard
               key={nanoid()}
               countryCode={item.cca3}

@@ -1,24 +1,50 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import backIcon from '../assets/back-icon.svg';
 
-const fakeData = {
-  flag: 'https://flagcdn.com/ax.svg',
-  name: 'Åland Islands',
-  nativeName: 'Åland',
-  population: 28875,
-  region: 'Europe',
-  subRegion: 'Northern Europe',
-  capital: 'Mariehamn',
-  topLevelDomain: ['.ax'],
-  currencies: 'Euro',
-  languages: 'Swedish',
-  borderCountries: ['IRN', 'PAK', 'TKM', 'UZB', 'TJK', 'CHN'],
-};
-
 function CountryDescribtion() {
+  const location = useLocation();
+  const [data, setData] = React.useState({});
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setData(location.state);
+    setIsLoading(false);
+  }, []);
+
+  // const topLevelDomainItems =
+  //   data.topLevelDomains && data.topLevelDomains.length ? (
+  //     data.topLevelDomains.map((item, index) => {
+  //       return <>{index === data.topLevelDomains.length - 1 ? item : `${item}, `}</>;
+  //     })
+  //   ) : (
+  //     <p>Have no domains yet</p>
+  //   );
+  // let currenciesItems;
+  // if (data.currencies) {
+  //   for (let currency in data.currencies) {
+  //     for (let item in currency) {
+  //       currenciesItems += `${item.name}: ${currency}, ${item.symbol}`;
+  //     }
+  //   }
+  // } else {
+  //   currenciesItems = 'Have no currencies';
+  // }
+  // const borderItems =
+  //   data.borders && data.borders.length ? (
+  //     data.borders.map((item) => {
+  //       return (
+  //         <a href="/" className="info__link" key={nanoid()}>
+  //           {item}
+  //         </a>
+  //       );
+  //     })
+  //   ) : (
+  //     <p>Have no border countries</p>
+  //   );
+
   return (
     <main className="country">
       <Link to="/" className="country__backBtn">
@@ -27,58 +53,60 @@ function CountryDescribtion() {
       </Link>
       <div className="country__row">
         <div className="country__flag">
-          <img src={fakeData.flag} alt={`${fakeData.name} flag`} />
+          <img src={data.flag} alt={`${data.name} flag`} />
         </div>
         <div className="country__info info">
-          <h2 className="info__title">{fakeData.name}</h2>
+          <h2 className="info__title">{data.name}</h2>
           <div className="info__misc">
             <div className="info__column">
               <p className="info__text">
                 <span>Native Name: </span>
-                {fakeData.nativeName}
+                {data.nativeName}
               </p>
               <p className="info__text">
                 <span>Population: </span>
-                {fakeData.population}
+                {data.population}
               </p>
               <p className="info__text">
                 <span>Region: </span>
-                {fakeData.region}
+                {data.region}
               </p>
               <p className="info__text">
                 <span>Sub Region: </span>
-                {fakeData.subRegion}
+                {data.subregion}
               </p>
               <p className="info__text">
                 <span>Capital: </span>
-                {fakeData.capital}
+                {data.capital}
               </p>
             </div>
             <div className="info__column">
               <p className="info__text">
                 <span>Top Level Domain: </span>
-                {fakeData.topLevelDomain}
+                {/* {topLevelDomainItems} */}
               </p>
               <p className="info__text">
                 <span>Currencies: </span>
-                {fakeData.currencies}
+                {/* {currenciesItems} */}
               </p>
               <p className="info__text">
                 <span>Languages: </span>
-                {fakeData.languages}
+                {/* {data.languages} */}
               </p>
             </div>
           </div>
           <div className="info__borders">
             <span>Border Countries:</span>
             <div className="info__links">
-              {fakeData.borderCountries.map((item) => {
-                return (
-                  <Link className="info__link" to={`/country/${item}`} key={nanoid()}>
-                    {item}
-                  </Link>
-                );
-              })}
+              {!isLoading && data.borders.length > 0
+                ? data.borders.map((item) => {
+                    return (
+                      <a href="/" className="info__link" key={nanoid()}>
+                        {item}
+                      </a>
+                    );
+                  })
+                : 'Have no border countries'}
             </div>
           </div>
         </div>

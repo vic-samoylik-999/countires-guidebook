@@ -14,7 +14,6 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    // temporary solution to layout and style page and have access to it
     path: '/:slug',
     element: <CountryPage />,
   },
