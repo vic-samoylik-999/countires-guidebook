@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import backIcon from '../assets/back-icon.svg';
 
-function CountryDescribtion() {
+function CountryDescription() {
   const location = useLocation();
   const [data, setData] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true);
@@ -98,4 +98,4 @@ function CountryDescribtion() {
   );
 }
 
-export default CountryDescribtion;
+export default CountryDescription;
