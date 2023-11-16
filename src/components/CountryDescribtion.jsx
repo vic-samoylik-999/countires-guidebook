@@ -14,8 +14,6 @@ function CountryDescription() {
     setIsLoading(false);
   }, []);
 
-  console.log(data.borders);
-
   return (
     <main className="country">
       <Link to="/" className="country__backBtn">
