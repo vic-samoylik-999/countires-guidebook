@@ -14,36 +14,7 @@ function CountryDescribtion() {
     setIsLoading(false);
   }, []);
 
-  // const topLevelDomainItems =
-  //   data.topLevelDomains && data.topLevelDomains.length ? (
-  //     data.topLevelDomains.map((item, index) => {
-  //       return <>{index === data.topLevelDomains.length - 1 ? item : `${item}, `}</>;
-  //     })
-  //   ) : (
-  //     <p>Have no domains yet</p>
-  //   );
-  // let currenciesItems;
-  // if (data.currencies) {
-  //   for (let currency in data.currencies) {
-  //     for (let item in currency) {
-  //       currenciesItems += `${item.name}: ${currency}, ${item.symbol}`;
-  //     }
-  //   }
-  // } else {
-  //   currenciesItems = 'Have no currencies';
-  // }
-  // const borderItems =
-  //   data.borders && data.borders.length ? (
-  //     data.borders.map((item) => {
-  //       return (
-  //         <a href="/" className="info__link" key={nanoid()}>
-  //           {item}
-  //         </a>
-  //       );
-  //     })
-  //   ) : (
-  //     <p>Have no border countries</p>
-  //   );
+  console.log(data.borders);
 
   return (
     <main className="country">
@@ -83,27 +54,39 @@ function CountryDescribtion() {
             <div className="info__column">
               <p className="info__text">
                 <span>Top Level Domain: </span>
-                {/* {topLevelDomainItems} */}
+                {!isLoading && data.topLevelDomains.length > 0
+                  ? data.topLevelDomains.map((item, index) => {
+                      return index === data.topLevelDomains.length - 1 ? item : `${item}, `;
+                    })
+                  : 'Have no border countries'}
               </p>
               <p className="info__text">
                 <span>Currencies: </span>
-                {/* {currenciesItems} */}
+                {!isLoading &&
+                  Object.values(data.currencies).map((item, index) => {
+                    return index === Object.values(data.currencies).length - 1
+                      ? `${item.name}: ${item.symbol}`
+                      : `${item.name}: ${item.symbol}, `;
+                  })}
               </p>
               <p className="info__text">
                 <span>Languages: </span>
-                {/* {data.languages} */}
+                {!isLoading &&
+                  Object.values(data.languages).map((item, index) => {
+                    return index === Object.values(data.languages).length - 1 ? item : `${item}, `;
+                  })}
               </p>
             </div>
           </div>
           <div className="info__borders">
             <span>Border Countries:</span>
             <div className="info__links">
-              {!isLoading && data.borders.length > 0
+              {!isLoading && data.borders && data.borders.length > 0
                 ? data.borders.map((item) => {
                     return (
-                      <a href="/" className="info__link" key={nanoid()}>
+                      <p className="info__border" key={nanoid()}>
                         {item}
-                      </a>
+                      </p>
                     );
                   })
                 : 'Have no border countries'}

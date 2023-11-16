@@ -76,12 +76,12 @@
         font-size: 16px;
         flex-wrap: wrap;
     }
-    &__link {
+    &__border {
         border-radius: 9px;
         border: thin solid transparent;
         box-shadow: 2px 2px 10px #b3b3b3;
         padding: .3rem 1rem;
-        cursor: pointer;
+        // cursor: pointer;
         transition: .3s ease;
         &:hover {  
             border-color: #bfbfbf;   
