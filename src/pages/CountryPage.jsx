@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from '../components/Header';
-import CountryDescription from '../components/CountryDescribtion';
+import CountryDescription from '../components/CountryDescription';
 
 function CountryPage() {
   return (
