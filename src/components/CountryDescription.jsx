@@ -50,7 +50,7 @@ function CountryDescription() {
 
   if (!info)
     return (
-      <main className='loader'>
+      <main className="loader">
         <div className="loader__wrapper">{Loader}</div>
       </main>
     );
@@ -75,7 +75,7 @@ function CountryDescription() {
               </p>
               <p className="info__text">
                 <span>Population: </span>
-                {info.population}
+                {info.population.toLocaleString()}
               </p>
               <p className="info__text">
                 <span>Region: </span>
