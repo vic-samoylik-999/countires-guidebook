@@ -11,48 +11,10 @@ import SkeletonCard from '../components/SkeletonCard';
 const SearchAndFilterContext = React.createContext();
 const filterValues = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
 
-// const createCountryCardItems = (item) => {
-//   const slug = item.name.official.toLowerCase().split(' ').join('-');
-//   return (
-//     <Link
-//       to={`/${slug}`}
-//       key={nanoid()}
-//       state={{
-//         flag: item.flags.svg,
-//         name: item.name.official,
-//         nativeName: item.name.common,
-//         population: item.population.toLocaleString(),
-//         region: item.region,
-//         subregion: item.subregion,
-//         capital: item.capital,
-//         topLevelDomains: item.tld,
-//         currencies: item.currencies,
-//         languages: item.languages,
-//         borders: item.borders,
-//       }}
-//       className="country-card"
-//     >
-//       <CountryCard
-//         key={nanoid()}
-//         countryCode={item.cca3}
-//         title={item.name.official}
-//         flag={item.flags.svg}
-//         population={item.population}
-//         region={item.region}
-//         capital={item.capital}
-//       />
-//     </Link>
-//   );
-// };
-
 const createCountryCardItems = (item) => {
   const slug = item.name.official.toLowerCase().split(' ').join('-');
   return (
-    <Link
-      to={`/${slug}`}
-      key={nanoid()}
-      className="country-card"
-    >
+    <Link to={`/${slug}`} key={nanoid()} className="country-card">
       <CountryCard
         key={nanoid()}
         countryCode={item.cca3}
