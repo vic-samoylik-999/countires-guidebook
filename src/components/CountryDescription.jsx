@@ -13,47 +13,45 @@ const client = axios.create({
 function CountryDescription() {
   const location = useLocation();
   const [info, setInfo] = React.useState(null);
-  // const [currentCCA3, setCurrentCCA3] = React.useState('');
+  const [slugsLinks, setSlugsLinks] = React.useState([]);
   const modifiedSlug = location.pathname.slice(1).split('-').join('%20');
 
   React.useEffect(() => {
     async function getInfo() {
       const responce = await client.get(`name/${modifiedSlug}`);
       setInfo(responce.data[0]);
+      const links = [];
+      if (responce.data[0].borders) {
+        for (let i = 0; i < responce.data[0].borders.length; i++) {
+          const country = await client.get(`alpha/${responce.data[0].borders[i]}`);
+          links.push({
+            official: country.data[0].name.official,
+            common: country.data[0].name.common,
+          });
+        }
+      }
+      setSlugsLinks(links);
     }
     getInfo();
-  }, []);
+  }, [location]);
 
   const Loader = (
     <ThreeCircles
       height="100"
       width="100"
       color="#c5c5c5"
-      wrapperStyle={{}}
-      wrapperClass=""
       visible={true}
       ariaLabel="three-circles-rotating"
-      outerCircleColor=""
-      innerCircleColor=""
-      middleCircleColor=""
     />
   );
 
-  // React.useEffect(() => {
-  //   const getSlugFromCCA3 = async (cca3) => {
-  //     const responce = await client.get(`alpha/${cca3}`);
-  //     const officialName = responce.data[0].name.official;
-  //     const slug = officialName.toLowerCase().split(' ').join('-');
-  //     setCurrentCCA3(slug);
-  //   };
-  // }, [setCurrentCCA3]);
-
-  if (!info)
+  if (!info) {
     return (
       <main className="loader">
         <div className="loader__wrapper">{Loader}</div>
       </main>
     );
+  }
 
   return (
     <main className="country">
@@ -116,11 +114,12 @@ function CountryDescription() {
           <div className="info__borders">
             <span>Border Countries:</span>
             <div className="info__links">
-              {info.borders ? (
-                info.borders.map((item) => {
+              {slugsLinks.length ? (
+                slugsLinks.map((item) => {
+                  const linkSlug = item.official.toLowerCase().split(' ').join('-');
                   return (
-                    <Link to="/" className="info__border" key={nanoid()}>
-                      {item}
+                    <Link to={`/${linkSlug}`} className="info__border" key={nanoid()}>
+                      {item.common}
                     </Link>
                   );
                 })
