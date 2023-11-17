@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
+import { ThreeCircles } from 'react-loader-spinner';
 
 import backIcon from '../assets/back-icon.svg';
 
@@ -23,6 +24,21 @@ function CountryDescription() {
     getInfo();
   }, []);
 
+  const Loader = (
+    <ThreeCircles
+      height="100"
+      width="100"
+      color="#c5c5c5"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      ariaLabel="three-circles-rotating"
+      outerCircleColor=""
+      innerCircleColor=""
+      middleCircleColor=""
+    />
+  );
+
   // React.useEffect(() => {
   //   const getSlugFromCCA3 = async (cca3) => {
   //     const responce = await client.get(`alpha/${cca3}`);
@@ -32,7 +48,12 @@ function CountryDescription() {
   //   };
   // }, [setCurrentCCA3]);
 
-  if (!info) return null;
+  if (!info)
+    return (
+      <main className='loader'>
+        <div className="loader__wrapper">{Loader}</div>
+      </main>
+    );
 
   return (
     <main className="country">
