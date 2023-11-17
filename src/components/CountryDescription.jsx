@@ -81,33 +81,41 @@ function CountryDescription() {
               </p>
               <p className="info__text">
                 <span>Sub Region: </span>
-                {info.subregion}
+                {info.subregion ? info.subregion : 'none'}
               </p>
               <p className="info__text">
                 <span>Capital: </span>
-                {info.capital}
+                {info.capital ? info.capital : 'none'}
               </p>
             </div>
             <div className="info__column">
               <p className="info__text">
                 <span>Top Level Domain: </span>
-                {info.tld.map((item, index) => {
-                  return index === info.tld.length - 1 ? item : `${item}, `;
-                })}
+                {info.tld
+                  ? info.tld.map((item, index) => {
+                      return index === info.tld.length - 1 ? item : `${item}, `;
+                    })
+                  : 'none'}
               </p>
               <p className="info__text">
                 <span>Currencies: </span>
-                {Object.values(info.currencies).map((item, index) => {
-                  return index === Object.values(info.currencies).length - 1
-                    ? `${item.name}: ${item.symbol}`
-                    : `${item.name}: ${item.symbol}, `;
-                })}
+                {info.currencies
+                  ? Object.values(info.currencies).map((item, index) => {
+                      return index === Object.values(info.currencies).length - 1
+                        ? `${item.name}: ${item.symbol}`
+                        : `${item.name}: ${item.symbol}, `;
+                    })
+                  : 'none'}
               </p>
               <p className="info__text">
                 <span>Languages: </span>
-                {Object.values(info.languages).map((item, index) => {
-                  return index === Object.values(info.languages).length - 1 ? item : `${item}, `;
-                })}
+                {info.languages
+                  ? Object.values(info.languages).map((item, index) => {
+                      return index === Object.values(info.languages).length - 1
+                        ? item
+                        : `${item}, `;
+                    })
+                  : 'none'}
               </p>
             </div>
           </div>
