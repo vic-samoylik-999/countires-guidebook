@@ -25,7 +25,7 @@
         color: #999;
         cursor: pointer;
         padding: .6rem;
-        transition: 2s ease;
+        transition: .7s ease;
         border: thin solid transparent;
         &-dots {
             cursor:not-allowed;
@@ -39,6 +39,8 @@
             cursor: not-allowed;
             color: var(--very-dark-blue);
             border: thin solid $grayish;
+            background-color: $grayish;
+            color: $white;
             border-radius: 20%;
             text-shadow: 0 0 5px $grayish;
         }
