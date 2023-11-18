@@ -14,10 +14,9 @@ const filterValues = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
 const createCountryCardItems = (item) => {
   const slug = item.name.official.toLowerCase().split(' ').join('-');
   return (
-    <Link to={`/${slug}`} key={nanoid()} className="country-card">
+    <Link to={`/${slug}`} state={item.cca3} key={nanoid()} className="country-card">
       <CountryCard
         key={nanoid()}
-        countryCode={item.cca3}
         title={item.name.official}
         flag={item.flags.svg}
         population={item.population}

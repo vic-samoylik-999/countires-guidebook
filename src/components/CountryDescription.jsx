@@ -12,13 +12,13 @@ const client = axios.create({
 
 function CountryDescription() {
   const location = useLocation();
+  const cca3 = useLocation().state;
   const [info, setInfo] = React.useState(null);
   const [slugsLinks, setSlugsLinks] = React.useState([]);
-  const modifiedSlug = location.pathname.slice(1).split('-').join('%20');
 
   React.useEffect(() => {
     async function getInfo() {
-      const responce = await client.get(`name/${modifiedSlug}`);
+      const responce = await client.get(`alpha/${cca3}`);
       setInfo(responce.data[0]);
       const links = [];
       if (responce.data[0].borders) {
@@ -27,6 +27,7 @@ function CountryDescription() {
           links.push({
             official: country.data[0].name.official,
             common: country.data[0].name.common,
+            cca3: country.data[0].cca3,
           });
         }
       }
@@ -126,7 +127,12 @@ function CountryDescription() {
                 slugsLinks.map((item) => {
                   const linkSlug = item.official.toLowerCase().split(' ').join('-');
                   return (
-                    <Link to={`/${linkSlug}`} className="info__border" key={nanoid()}>
+                    <Link
+                      to={`/${linkSlug}`}
+                      state={item.cca3}
+                      className="info__border"
+                      key={nanoid()}
+                    >
                       {item.common}
                     </Link>
                   );
