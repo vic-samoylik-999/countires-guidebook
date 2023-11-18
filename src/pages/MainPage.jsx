@@ -83,19 +83,19 @@ export default function Main() {
           >
             <div className="search-filter">
               <Search />
+              <Pagination
+                cardsPerPage={cardsPerPage}
+                totalCards={countriesData.length}
+                paginate={paginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
               <Filter />
             </div>
             <div className="countries">
               {currentCardsSlice.length > 0 ? countriesElements : skeletons}
             </div>
           </SearchAndFilterContext.Provider>
-          <Pagination
-            cardsPerPage={cardsPerPage}
-            totalCards={countriesData.length}
-            paginate={paginate}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
         </div>
       </main>
     </>

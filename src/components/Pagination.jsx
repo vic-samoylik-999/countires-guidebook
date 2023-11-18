@@ -11,28 +11,53 @@ const Pagination = ({ cardsPerPage, totalCards, paginate, currentPage, setCurren
     setCurrentPage((prevPage) => (prevPage !== 1 ? prevPage - 1 : prevPage));
   const increasePage = () =>
     setCurrentPage((prevPage) => (prevPage !== pageNumbers.length ? prevPage + 1 : prevPage));
+  const goPage = (page) => setCurrentPage(page);
 
   return (
-    <nav>
-      <ul className="pagination">
+    <nav className="pagination">
+      <ul className="pagination__list">
+        <li className="pagination__item">
+          <button className="pagination__link" onClick={() => goPage(1)}>
+            &lt;&lt;
+          </button>
+        </li>
         <li className="pagination__item">
           <button className="pagination__link" onClick={() => decreasePage()}>
             &lt;
           </button>
         </li>
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            className={number === currentPage ? 'pagination__item active' : 'pagination__item'}
-          >
-            <button onClick={() => paginate(number)} className="pagination__link">
-              {number}
-            </button>
-          </li>
-        ))}
+        {currentPage > 4 && <li className="pagination__link pagination__link-dots">...</li>}
+        {pageNumbers.map((number, index) => {
+          return (
+            index >= currentPage - 3 &&
+            index <= currentPage + 1 && (
+              <li
+                key={number}
+                className={number === currentPage ? 'pagination__item active' : 'pagination__item'}
+              >
+                <button
+                  onClick={() => paginate(number)}
+                  className={
+                    number === currentPage ? 'pagination__link active' : 'pagination__link'
+                  }
+                >
+                  {number}
+                </button>
+              </li>
+            )
+          );
+        })}
+        {currentPage < pageNumbers.length - 3 && (
+          <li className="pagination__link pagination__link-dots">...</li>
+        )}
         <li className="pagination__item">
           <button className="pagination__link" onClick={() => increasePage()}>
             &gt;
+          </button>
+        </li>
+        <li className="pagination__item">
+          <button className="pagination__link" onClick={() => goPage(pageNumbers.length)}>
+            &gt;&gt;
           </button>
         </li>
       </ul>

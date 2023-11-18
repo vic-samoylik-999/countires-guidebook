@@ -1,17 +1,46 @@
 .pagination {
-    display: flex;
-    padding: 2rem 0;
-    overflow: scroll;
-    justify-content: center;
+    box-shadow: 2px 2px 15px #b3b3b3;
+    transition: .4s ease;
+    border: thin solid transparent;
+    border-radius: 9px;
+    background-color: white;
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        
+
+
+    }
     &__item {
+
         &.active {
-            background-color: red;
-            font-size: 2rem;
+
         }
     }
     
     &__link {
+        color: #999;
         cursor: pointer;
-        padding: .4rem;
+        padding: .6rem;
+        transition: 2s ease;
+        border: thin solid transparent;
+        &-dots {
+            cursor:not-allowed;
+        }
+        &:hover {
+            color: var(--very-dark-blue);
+            transition: .3s ease;
+            text-shadow: 0 0 5px $grayish;
+        }
+        &.active {
+            cursor: not-allowed;
+            color: var(--very-dark-blue);
+            border: thin solid $grayish;
+            border-radius: 20%;
+            text-shadow: 0 0 5px $grayish;
+        }
     }
 }
