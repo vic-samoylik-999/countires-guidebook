@@ -70,7 +70,8 @@ function CountryDescription() {
             <div className="info__column">
               <p className="info__text">
                 <span>Native Name: </span>
-                {info.name.common}
+                {console.log(info.name.nativeName)}
+                {Object.values(info.name.nativeName)[0].official}
               </p>
               <p className="info__text">
                 <span>Population: </span>

@@ -1,0 +1,17 @@
+.pagination {
+    display: flex;
+    padding: 2rem 0;
+    overflow: scroll;
+    justify-content: center;
+    &__item {
+        &.active {
+            background-color: red;
+            font-size: 2rem;
+        }
+    }
+    
+    &__link {
+        cursor: pointer;
+        padding: .4rem;
+    }
+}

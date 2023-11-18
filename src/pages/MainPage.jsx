@@ -7,6 +7,7 @@ import Search from '../components/Search';
 import Filter from '../components/Filter';
 import CountryCard from '../components/CountryCard';
 import SkeletonCard from '../components/SkeletonCard';
+import Pagination from '../components/Pagination';
 
 const SearchAndFilterContext = React.createContext();
 const filterValues = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
@@ -31,6 +32,8 @@ export default function Main() {
   const [countriesData, setCountriesData] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
   const [currentSortChoise, setCurrentSortChoise] = React.useState(0);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [cardsPerPage] = React.useState(8);
 
   const baseUrl = 'https://restcountries.com/v3.1/';
   let url =
@@ -38,6 +41,7 @@ export default function Main() {
       ? baseUrl + `region/${filterValues[currentSortChoise].toLowerCase()}`
       : baseUrl +
         'all?fields=name,flags,cca3,population,region,subregion,capital,tld,currencies,languages,borders';
+
   React.useEffect(() => {
     async function getCountries(url) {
       const responce = await fetch(url);
@@ -46,6 +50,12 @@ export default function Main() {
     }
     getCountries(url);
   }, [currentSortChoise]);
+
+  // Pagination
+  const indexOfLastCard = currentPage * cardsPerPage;
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+  const currentCardsSlice = countriesData.slice(indexOfFirstCard, indexOfLastCard);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const countriesElements = searchValue
     ? countriesData
@@ -57,7 +67,7 @@ export default function Main() {
         .map((item) => {
           return createCountryCardItems(item);
         })
-    : countriesData.map((item) => {
+    : currentCardsSlice.map((item) => {
         return createCountryCardItems(item);
       });
 
@@ -76,9 +86,16 @@ export default function Main() {
               <Filter />
             </div>
             <div className="countries">
-              {countriesData.length > 0 ? countriesElements : skeletons}
+              {currentCardsSlice.length > 0 ? countriesElements : skeletons}
             </div>
           </SearchAndFilterContext.Provider>
+          <Pagination
+            cardsPerPage={cardsPerPage}
+            totalCards={countriesData.length}
+            paginate={paginate}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </main>
     </>
