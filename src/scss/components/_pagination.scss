@@ -12,7 +12,9 @@
         justify-content: center;
         align-items: center;
         user-select: none;
-        
+        @media (max-width: 1065px) {
+            
+        }
 
 
     }
@@ -41,8 +43,8 @@
             cursor: not-allowed;
             color: var(--very-dark-blue);
             border: thin solid $grayish;
-            background-color: $grayish;
-            color: $white;
+            // background-color: $grayish;
+            color: $very-dark-blue;
             border-radius: 20%;
             text-shadow: 0 0 5px $grayish;
         }
