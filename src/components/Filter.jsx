@@ -4,12 +4,13 @@ import { SearchAndFilterContext, filterValues } from '../pages/MainPage';
 
 import dropdownIcon from '../assets/dropdownArrow.svg';
 
-function Filter() {
+function Filter({ setCurrentPage }) {
   const [isSelecting, setIsSelecting] = React.useState(false);
   const { currentSortChoise, setCurrentSortChoise } = React.useContext(SearchAndFilterContext);
   const changeFilter = (event) => {
     setCurrentSortChoise(event.target.id);
     setIsSelecting(false);
+    setCurrentPage(1);
   };
 
   return (

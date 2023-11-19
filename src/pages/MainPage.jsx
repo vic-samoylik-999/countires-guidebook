@@ -34,7 +34,7 @@ export default function Main() {
   const [currentSortChoise, setCurrentSortChoise] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [cardsPerPage] = React.useState(8);
-  const [currentViewWidth, setCurrentViewWidth] = React.useState(0);
+  const [currentViewWidth, setCurrentViewWidth] = React.useState(window.innerWidth);
 
   const baseUrl = 'https://restcountries.com/v3.1/';
   let url =
@@ -103,7 +103,7 @@ export default function Main() {
                   currentViewWidth={currentViewWidth}
                 />
               )}
-              <Filter />
+              <Filter setCurrentPage={setCurrentPage} />
             </div>
           </SearchAndFilterContext.Provider>
           <div className="countries">
