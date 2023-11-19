@@ -1,6 +1,6 @@
 .header {
     background-color: $white;
-    padding: 20px 0;
+    padding: .7rem 0;
     box-shadow: 0 3px 7px hsl(0, 0%, 80%);
     &__row {
         display: flex;
@@ -8,8 +8,10 @@
         align-items: center;
     }
     &__logo {
-        font-weight: 800;
-        font-size: 1.7rem;
+
+        img {
+            height: 3rem;
+        }
     }
 }
 
