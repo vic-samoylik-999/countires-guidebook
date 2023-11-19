@@ -1,9 +1,9 @@
 .pagination {
-    box-shadow: 2px 2px 15px #b3b3b3;
+    box-shadow: 2px 2px 15px $shadow-box;
     transition: .4s ease;
     border: thin solid transparent;
     border-radius: 9px;
-    background-color: white;
+    background-color: $background-additional;
     @media (max-width: 1065px) {
         margin-bottom: 1rem;
     }
@@ -26,7 +26,7 @@
     }
     
     &__link {
-        color: #999;
+        color: $text-shaded;
         cursor: pointer;
         padding: .6rem;
         transition: .7s ease;
@@ -35,18 +35,17 @@
             cursor:not-allowed;
         }
         &:hover {
-            color: var(--very-dark-blue);
+            color: $text;
             transition: .3s ease;
-            text-shadow: 0 0 5px $grayish;
+            text-shadow: 0 0 5px $shadow-box;
         }
         &.active {
             cursor: not-allowed;
-            color: var(--very-dark-blue);
-            border: thin solid $grayish;
-            // background-color: $grayish;
+            color: $text;
+            border: thin solid $accent;
             color: $very-dark-blue;
             border-radius: 20%;
-            text-shadow: 0 0 5px $grayish;
+            text-shadow: 0 0 5px $shadow-box;
         }
         @media (max-width: 1065px) {
             padding: 1rem;

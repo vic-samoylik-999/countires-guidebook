@@ -1,7 +1,7 @@
 .header {
-    background-color: $white;
+    background-color: $background-additional;
     padding: .7rem 0;
-    box-shadow: 0 3px 7px hsl(0, 0%, 80%);
+    box-shadow: 0 3px 7px $shadow-box;
     &__row {
         display: flex;
         justify-content: space-between;

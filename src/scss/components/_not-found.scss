@@ -5,6 +5,7 @@
     justify-content: center;
     height: 80vh;
     row-gap: 1rem;
+    background-color: $background;
     &__emoji {
         font-size: 62px;
     }
@@ -16,7 +17,7 @@
         transition: .5s ease;
         text-align: center;
         &:hover {
-            color: lightseagreen;
+            color: $accent;
             transition: .5s ease;
         }
         & p:first-child {
