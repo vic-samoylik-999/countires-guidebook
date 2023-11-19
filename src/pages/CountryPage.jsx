@@ -3,12 +3,25 @@ import React from 'react';
 import Header from '../components/Header';
 import CountryDescription from '../components/CountryDescription';
 
+import backIcon from '../assets/back-icon.svg';
+
+const goBack = () => {
+  const history = window.history;
+  history.back();
+};
+
 function CountryPage() {
   return (
     <>
       <Header />
       <div className="container">
-        <CountryDescription />
+        <main className="country">
+          <button onClick={() => goBack()} className="country__backBtn">
+            <img src={backIcon} alt="Back icon" />
+            Back
+          </button>
+          <CountryDescription />
+        </main>
       </div>
     </>
   );
