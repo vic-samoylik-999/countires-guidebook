@@ -43,7 +43,8 @@
             cursor: not-allowed;
             color: $text;
             border: thin solid $accent;
-            color: $text;
+            color: $background-additional;
+            background-color: $accent;
             border-radius: 20%;
             text-shadow: 0 0 5px $shadow-box;
         }
