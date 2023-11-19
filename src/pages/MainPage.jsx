@@ -7,7 +7,7 @@ import Search from '../components/Search';
 import Filter from '../components/Filter';
 import CountryCard from '../components/CountryCard';
 import SkeletonCard from '../components/SkeletonCard';
-import Pagination from '../components/Pagination';
+import { Pagination, checkMobileScroll } from '../components/Pagination';
 
 const SearchAndFilterContext = React.createContext();
 const filterValues = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
@@ -62,7 +62,10 @@ export default function Main() {
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCardsSlice = countriesData.slice(indexOfFirstCard, indexOfLastCard);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    checkMobileScroll(currentViewWidth);
+  };
 
   const countriesElements = searchValue
     ? countriesData
@@ -97,6 +100,7 @@ export default function Main() {
                   paginate={paginate}
                   currentPage={currentPage}
                   setCurrentPage={setCurrentPage}
+                  currentViewWidth={currentViewWidth}
                 />
               )}
               <Filter />
@@ -112,6 +116,7 @@ export default function Main() {
               paginate={paginate}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              currentViewWidth={currentViewWidth}
             />
           )}
         </div>

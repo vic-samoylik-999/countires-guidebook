@@ -1,17 +1,35 @@
 import React from 'react';
 
-const Pagination = ({ cardsPerPage, totalCards, paginate, currentPage, setCurrentPage }) => {
+const checkMobileScroll = (currentViewWidth) => {
+  if (currentViewWidth < 1065) window.scrollTo(0, 0);
+};
+
+const Pagination = ({
+  cardsPerPage,
+  totalCards,
+  paginate,
+  currentPage,
+  setCurrentPage,
+  currentViewWidth,
+}) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalCards / cardsPerPage); i++) {
     pageNumbers.push(i);
   }
 
-  const decreasePage = () =>
+  const decreasePage = () => {
     setCurrentPage((prevPage) => (prevPage !== 1 ? prevPage - 1 : prevPage));
-  const increasePage = () =>
+    checkMobileScroll(currentViewWidth);
+  };
+  const increasePage = () => {
     setCurrentPage((prevPage) => (prevPage !== pageNumbers.length ? prevPage + 1 : prevPage));
-  const goPage = (page) => setCurrentPage(page);
+    checkMobileScroll(currentViewWidth);
+  };
+  const goPage = (page) => {
+    setCurrentPage(page);
+    checkMobileScroll(currentViewWidth);
+  };
 
   return (
     <nav className="pagination">
@@ -65,4 +83,4 @@ const Pagination = ({ cardsPerPage, totalCards, paginate, currentPage, setCurren
   );
 };
 
-export default Pagination;
+export { Pagination, checkMobileScroll };

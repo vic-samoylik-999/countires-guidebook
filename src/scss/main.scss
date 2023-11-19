@@ -3,6 +3,10 @@
 @import './layout';
 @import './components/all';
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Nunito Sans', sans-serif;
     color: $even-darker-blue;
