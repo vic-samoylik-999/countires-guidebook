@@ -4,7 +4,9 @@
     border: thin solid transparent;
     border-radius: 9px;
     background-color: white;
-
+    @media (max-width: 1065px) {
+        margin-bottom: 1rem;
+    }
     &__list {
         display: flex;
         justify-content: center;
@@ -43,6 +45,9 @@
             color: $white;
             border-radius: 20%;
             text-shadow: 0 0 5px $grayish;
+        }
+        @media (max-width: 1065px) {
+            padding: 1rem;
         }
     }
 }

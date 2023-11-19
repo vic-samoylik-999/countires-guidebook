@@ -34,6 +34,7 @@ export default function Main() {
   const [currentSortChoise, setCurrentSortChoise] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [cardsPerPage] = React.useState(8);
+  const [currentViewWidth, setCurrentViewWidth] = React.useState(0);
 
   const baseUrl = 'https://restcountries.com/v3.1/';
   let url =
@@ -50,6 +51,12 @@ export default function Main() {
     }
     getCountries(url);
   }, [currentSortChoise]);
+
+  React.useEffect(() => {
+    window.addEventListener('resize', () => {
+      setCurrentViewWidth(window.innerWidth);
+    });
+  }, []);
 
   // Pagination
   const indexOfLastCard = currentPage * cardsPerPage;
@@ -83,19 +90,30 @@ export default function Main() {
           >
             <div className="search-filter">
               <Search />
-              <Pagination
-                cardsPerPage={cardsPerPage}
-                totalCards={countriesData.length}
-                paginate={paginate}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />
+              {currentViewWidth > 1065 && (
+                <Pagination
+                  cardsPerPage={cardsPerPage}
+                  totalCards={countriesData.length}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                />
+              )}
               <Filter />
             </div>
-            <div className="countries">
-              {currentCardsSlice.length > 0 ? countriesElements : skeletons}
-            </div>
           </SearchAndFilterContext.Provider>
+          <div className="countries">
+            {currentCardsSlice.length > 0 ? countriesElements : skeletons}
+          </div>
+          {currentViewWidth < 1065 && (
+            <Pagination
+              cardsPerPage={cardsPerPage}
+              totalCards={countriesData.length}
+              paginate={paginate}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
         </div>
       </main>
     </>
