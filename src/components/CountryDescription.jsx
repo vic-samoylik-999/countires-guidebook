@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { ThreeCircles } from 'react-loader-spinner';
@@ -13,10 +13,14 @@ function CountryDescription() {
   const cca3 = useLocation().state;
   const [info, setInfo] = React.useState(null);
   const [slugsLinks, setSlugsLinks] = React.useState([]);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     async function getInfo() {
-      const responce = await client.get(`alpha/${cca3}`);
+      const responce = await client.get(`alpha/${cca3}`).catch(function (error) {
+        if (error.response) navigate('not-found');
+      });
+
       setInfo(responce.data[0]);
       const links = [];
       if (responce.data[0].borders) {
