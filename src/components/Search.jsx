@@ -2,7 +2,9 @@ import React from 'react';
 import { SearchAndFilterContext } from '../pages/MainPage';
 
 import searchIcon from '../assets/search-icon.svg';
+import searchIconDark from '../assets/search-icon-dark.svg';
 import closeIcon from '../assets/close-icon.svg';
+import closeIconDark from '../assets/close-icon-dark.svg';
 
 function Search() {
   const { searchValue, setSearchValue } = React.useContext(SearchAndFilterContext);

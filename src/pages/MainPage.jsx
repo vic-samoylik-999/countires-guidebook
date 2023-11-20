@@ -2,6 +2,7 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import { Link } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
+import { filterValues } from '../functions/filterValues';
 
 import Header from '../components/Header';
 import Search from '../components/Search';
@@ -13,7 +14,6 @@ import NoCountriesElementsError from '../components/NoCountriesElements';
 
 const SearchAndFilterContext = React.createContext();
 const ThemeContext = React.createContext();
-const filterValues = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
 
 const createCountryCardItems = (item) => {
   const slug = item.name.official.toLowerCase().split(' ').join('-');
@@ -39,8 +39,8 @@ export default function Main() {
   const [cardsPerPage] = React.useState(8);
   const [currentViewWidth, setCurrentViewWidth] = React.useState(window.innerWidth);
   const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light');
-
-  const rootElement = document.querySelector('#root');
+  // Potential Color Theme Toggle
+  const rootElement = document.querySelector('body');
   rootElement.dataset.theme = theme;
   const changeTheme = () => {
     setTheme(() => (theme === 'light' ? 'dark' : 'light'));

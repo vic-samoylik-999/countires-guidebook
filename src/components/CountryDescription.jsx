@@ -4,6 +4,9 @@ import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { ThreeCircles } from 'react-loader-spinner';
 
+import backIcon from '../assets/back-icon.svg';
+import backIconDark from '../assets/back-icon-dark.svg';
+
 const client = axios.create({
   baseURL: 'https://restcountries.com/v3.1/',
 });
@@ -57,88 +60,96 @@ function CountryDescription() {
   }
 
   return (
-    <div className="country__row">
-      <div className="country__flag">
-        <img src={info.flags.svg} alt={`${info.name.official} flag`} />
-      </div>
-      <div className="country__info info">
-        <h2 className="info__title">{info.name.official}</h2>
-        <div className="info__misc">
-          <div className="info__column">
-            <p className="info__text">
-              <span>Native Name: </span>
-              {Object.values(info.name.nativeName)[0].official}
-            </p>
-            <p className="info__text">
-              <span>Population: </span>
-              {info.population.toLocaleString()}
-            </p>
-            <p className="info__text">
-              <span>Region: </span>
-              {info.region}
-            </p>
-            <p className="info__text">
-              <span>Sub Region: </span>
-              {info.subregion ? info.subregion : 'none'}
-            </p>
-            <p className="info__text">
-              <span>Capital: </span>
-              {info.capital ? info.capital : 'none'}
-            </p>
+    <>
+      <button onClick={() => goBack()} className="country__backBtn">
+        <img src={backIcon} alt="Back icon" />
+        Back
+      </button>
+      <div className="country__row">
+        <div className="country__flag">
+          <img src={info.flags.svg} alt={`${info.name.official} flag`} />
+        </div>
+        <div className="country__info info">
+          <h2 className="info__title">{info.name.official}</h2>
+          <div className="info__misc">
+            <div className="info__column">
+              <p className="info__text">
+                <span>Native Name: </span>
+                {Object.values(info.name.nativeName)[0].official}
+              </p>
+              <p className="info__text">
+                <span>Population: </span>
+                {info.population.toLocaleString()}
+              </p>
+              <p className="info__text">
+                <span>Region: </span>
+                {info.region}
+              </p>
+              <p className="info__text">
+                <span>Sub Region: </span>
+                {info.subregion ? info.subregion : 'none'}
+              </p>
+              <p className="info__text">
+                <span>Capital: </span>
+                {info.capital ? info.capital : 'none'}
+              </p>
+            </div>
+            <div className="info__column">
+              <p className="info__text">
+                <span>Top Level Domain: </span>
+                {info.tld
+                  ? info.tld.map((item, index) => {
+                      return index === info.tld.length - 1 ? item : `${item}, `;
+                    })
+                  : 'none'}
+              </p>
+              <p className="info__text">
+                <span>Currencies: </span>
+                {info.currencies
+                  ? Object.values(info.currencies).map((item, index) => {
+                      return index === Object.values(info.currencies).length - 1
+                        ? `${item.name}: ${item.symbol}`
+                        : `${item.name}: ${item.symbol}, `;
+                    })
+                  : 'none'}
+              </p>
+              <p className="info__text">
+                <span>Languages: </span>
+                {info.languages
+                  ? Object.values(info.languages).map((item, index) => {
+                      return index === Object.values(info.languages).length - 1
+                        ? item
+                        : `${item}, `;
+                    })
+                  : 'none'}
+              </p>
+            </div>
           </div>
-          <div className="info__column">
-            <p className="info__text">
-              <span>Top Level Domain: </span>
-              {info.tld
-                ? info.tld.map((item, index) => {
-                    return index === info.tld.length - 1 ? item : `${item}, `;
-                  })
-                : 'none'}
-            </p>
-            <p className="info__text">
-              <span>Currencies: </span>
-              {info.currencies
-                ? Object.values(info.currencies).map((item, index) => {
-                    return index === Object.values(info.currencies).length - 1
-                      ? `${item.name}: ${item.symbol}`
-                      : `${item.name}: ${item.symbol}, `;
-                  })
-                : 'none'}
-            </p>
-            <p className="info__text">
-              <span>Languages: </span>
-              {info.languages
-                ? Object.values(info.languages).map((item, index) => {
-                    return index === Object.values(info.languages).length - 1 ? item : `${item}, `;
-                  })
-                : 'none'}
-            </p>
+          <div className="info__borders">
+            <span>Border Countries:</span>
+            <div className="info__links">
+              {slugsLinks.length ? (
+                slugsLinks.map((item) => {
+                  const linkSlug = item.official.toLowerCase().split(' ').join('-');
+                  return (
+                    <Link
+                      to={`/${linkSlug}`}
+                      state={item.cca3}
+                      className="info__border"
+                      key={nanoid()}
+                    >
+                      {item.common}
+                    </Link>
+                  );
+                })
+              ) : (
+                <p>Have no border countries</p>
+              )}
+            </div>
           </div>
         </div>
-        <div className="info__borders">
-          <span>Border Countries:</span>
-          <div className="info__links">
-            {slugsLinks.length ? (
-              slugsLinks.map((item) => {
-                const linkSlug = item.official.toLowerCase().split(' ').join('-');
-                return (
-                  <Link
-                    to={`/${linkSlug}`}
-                    state={item.cca3}
-                    className="info__border"
-                    key={nanoid()}
-                  >
-                    {item.common}
-                  </Link>
-                );
-              })
-            ) : (
-              <p>Have no border countries</p>
-            )}
-          </div>
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 

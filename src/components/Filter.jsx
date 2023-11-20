@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { SearchAndFilterContext, filterValues } from '../pages/MainPage';
 
 import dropdownIcon from '../assets/dropdownArrow.svg';
+import dropdownIconDark from '../assets/dropdownArrow-dark.svg';
 
 function Filter({ setCurrentPage }) {
   const [isSelecting, setIsSelecting] = React.useState(false);

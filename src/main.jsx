@@ -17,6 +17,10 @@ const router = createBrowserRouter([
     path: '/:slug',
     element: <CountryPage />,
   },
+  {
+    path: '/not-found',
+    element: <NotFound />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

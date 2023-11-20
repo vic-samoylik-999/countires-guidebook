@@ -4,10 +4,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    row-gap: 1rem;
     &__heading {
-
+font-size: 3rem;
     }
     &__smiley {
-
+        font-size: 3rem;
     }
 }
