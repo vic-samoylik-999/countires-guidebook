@@ -4,6 +4,7 @@
     border: thin solid transparent;
     border-radius: 9px;
     background-color: $background-additional;
+    padding: 0.2rem;
     @media (max-width: 1065px) {
         margin-bottom: 1rem;
     }
@@ -28,8 +29,8 @@
     &__link {
         color: $text-shaded;
         cursor: pointer;
-        padding: .6rem;
-        transition: .7s ease;
+        padding: .4rem;
+        transition: .5s ease;
         border: thin solid transparent;
         &-dots {
             cursor:not-allowed;

@@ -11,6 +11,7 @@
         transition: .4s ease;
         border: thin solid transparent;
         font-size: 16px;
+        background-color: $background-additional;
         &::placeholder {
             color: $text-shaded;
         }
@@ -18,6 +19,7 @@
             border-color: $border;
             transition: .4s ease;
             box-shadow: 2px 2px 15px $shadow-box;
+            color: $text;
             
             & + .search__loupe {
               opacity: 1;
