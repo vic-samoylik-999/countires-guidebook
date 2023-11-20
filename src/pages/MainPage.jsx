@@ -1,6 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { Link } from 'react-router-dom';
+import useLocalStorage from 'use-local-storage';
 
 import Header from '../components/Header';
 import Search from '../components/Search';
@@ -8,8 +9,10 @@ import Filter from '../components/Filter';
 import CountryCard from '../components/CountryCard';
 import SkeletonCard from '../components/SkeletonCard';
 import { Pagination, checkMobileScroll } from '../components/Pagination';
+import NoCountriesElementsError from '../components/NoCountriesElements';
 
 const SearchAndFilterContext = React.createContext();
+const ThemeContext = React.createContext();
 const filterValues = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
 
 const createCountryCardItems = (item) => {
@@ -35,6 +38,13 @@ export default function Main() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [cardsPerPage] = React.useState(8);
   const [currentViewWidth, setCurrentViewWidth] = React.useState(window.innerWidth);
+  const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light');
+
+  const rootElement = document.querySelector('#root');
+  rootElement.dataset.theme = theme;
+  const changeTheme = () => {
+    setTheme(() => (theme === 'light' ? 'dark' : 'light'));
+  };
 
   const baseUrl = 'https://restcountries.com/v3.1/';
   let url =
@@ -82,47 +92,51 @@ export default function Main() {
       });
 
   const skeletons = [...Array(12)].map(() => <SkeletonCard key={nanoid()} />);
-
   return (
-    <>
-      <Header />
-      <main className="main">
-        <div className="container">
-          <SearchAndFilterContext.Provider
-            value={{ searchValue, currentSortChoise, setSearchValue, setCurrentSortChoise }}
-          >
-            <div className="search-filter">
-              <Search />
-              {currentViewWidth > 1065 && (
-                <Pagination
-                  cardsPerPage={cardsPerPage}
-                  totalCards={countriesData.length}
-                  paginate={paginate}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  currentViewWidth={currentViewWidth}
-                />
-              )}
-              <Filter setCurrentPage={setCurrentPage} />
-            </div>
-          </SearchAndFilterContext.Provider>
-          <div className="countries">
-            {currentCardsSlice.length > 0 ? countriesElements : skeletons}
+    <ThemeContext.Provider value={{ theme, changeTheme }}>
+      <div className="wrapper">
+        <Header />
+        <main className="main">
+          <div className="container">
+            <SearchAndFilterContext.Provider
+              value={{ searchValue, currentSortChoise, setSearchValue, setCurrentSortChoise }}
+            >
+              <div className="search-filter">
+                <Search />
+                {currentViewWidth > 1065 && (
+                  <Pagination
+                    cardsPerPage={cardsPerPage}
+                    totalCards={countriesData.length}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    currentViewWidth={currentViewWidth}
+                  />
+                )}
+                <Filter setCurrentPage={setCurrentPage} />
+              </div>
+            </SearchAndFilterContext.Provider>
+            {countriesElements.length > 0 && (
+              <div className="countries">
+                {currentCardsSlice.length > 0 ? countriesElements : skeletons}
+              </div>
+            )}
+            {countriesElements.length === 0 && <NoCountriesElementsError />}
+            {countriesElements.length > 0 && currentViewWidth < 1065 && (
+              <Pagination
+                cardsPerPage={cardsPerPage}
+                totalCards={countriesData.length}
+                paginate={paginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                currentViewWidth={currentViewWidth}
+              />
+            )}
           </div>
-          {currentViewWidth < 1065 && (
-            <Pagination
-              cardsPerPage={cardsPerPage}
-              totalCards={countriesData.length}
-              paginate={paginate}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              currentViewWidth={currentViewWidth}
-            />
-          )}
-        </div>
-      </main>
-    </>
+        </main>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
-export { SearchAndFilterContext, filterValues };
+export { SearchAndFilterContext, filterValues, ThemeContext };

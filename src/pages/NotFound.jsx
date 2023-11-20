@@ -6,8 +6,8 @@ import backIcon from '../assets/back-icon.svg';
 
 function NotFound() {
   return (
-    <>
-      <Header />
+    <div className="wrapper">
+      {/* <Header /> */}
       <div className="not-found">
         <h2 className="not-found__emoji">😥</h2>
         <p className="not-found__text">It seems like there is no such page...</p>
@@ -16,7 +16,7 @@ function NotFound() {
           <p>↩️</p>
         </Link>
       </div>
-    </>
+    </div>
   );
 }
 
