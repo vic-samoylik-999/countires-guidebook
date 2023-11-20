@@ -1,7 +1,7 @@
 .header {
-    background-color: $background-additional;
+    background-color: var(--background-additional);
     padding: .7rem 0;
-    box-shadow: 0 3px 7px $shadow-box;
+    box-shadow: 0 3px 7px var(--shadow-box);
     &__row {
         display: flex;
         justify-content: space-between;
@@ -30,6 +30,6 @@
     &__text {
         font-size: 1.1rem;
         font-weight: 600;
-        color: $text;
+        color: var(--text);
     }
 }

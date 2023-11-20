@@ -30,7 +30,7 @@ h5 {
 
 a {
   text-decoration: none;
-  color: $text;
+  color: inherit;
 }
 
 @mixin noselect {

@@ -7,18 +7,19 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
+#root {
     font-family: 'Nunito Sans', sans-serif;
-    color: $text;
-    background-color: $background;
     font-size: 16px;
+    color: var(--text);
+    background-color: var(--background);
 }
+
 
 // Scrollbar styling
 
 ::-webkit-scrollbar {
     width: 0.60rem;
-    background-color: $background-additional;
+    background-color: var(--background-additional);
 
 }
 

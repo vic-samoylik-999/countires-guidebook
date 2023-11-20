@@ -1,17 +1,20 @@
-// light mode
-$text: hsl(200, 15%, 8%); 
-$text-shaded: hsl(0, 0%, 60%); 
-$background: hsl(0, 0%, 98%); 
-$background-additional: hsl(0, 0%, 100%); 
-$shadow-box: hsla(0, 0%, 80%, .5);
-$border: hsl(0, 0%, 55%);
-$accent: hsl(176, 42%, 33%);
+:root {
+    --text: hsl(200, 15%, 8%); 
+    --text-shaded: hsl(0, 0%, 60%); 
+    --background: hsl(0, 0%, 98%); 
+    --background-additional: hsl(0, 0%, 100%); 
+    --shadow-box: hsla(0, 0%, 80%, .5);
+    --border: hsl(0, 0%, 55%);
+    --accent: hsl(176, 42%, 33%);
+}
 
-// dark mode
-$text: hsl(0, 0%, 100%); 
-$text-shaded: hsl(0, 0%, 60%); 
-$background: hsl(207, 26%, 17%); 
-$background-additional: hsl(209, 23%, 22%); 
-$shadow-box: hsla(0, 0%, 0%, .3);
-$border: hsl(0, 0%, 55%);
-$accent: hsl(174, 72%, 56%);
+
+[data-theme="dark"] {
+    --text: hsl(0, 0%, 100%); 
+    --text-shaded: hsl(0, 0%, 60%); 
+    --background: hsl(207, 26%, 17%); 
+    --background-additional: hsl(209, 23%, 22%); 
+    --shadow-box: hsla(0, 0%, 0%, .3);
+    --border: hsl(0, 0%, 55%);
+    --accent: hsl(174, 72%, 56%);
+}

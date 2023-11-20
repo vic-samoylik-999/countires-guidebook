@@ -1,10 +1,10 @@
 .filter {
-    background-color: $background-additional;
+    background-color: var(--background-additional);
     position: relative;
     height: 42px;
     border-radius: 9px;
     max-width: 400px;
-    box-shadow: 2px 2px 15px $shadow-box;
+    box-shadow: 2px 2px 15px var(--shadow-box);
     transition: .4s ease;
     border: thin solid transparent;
     padding: 1rem 2rem;
@@ -40,10 +40,10 @@
     }
     &__list {
         position: absolute;
-        box-shadow: 2px 2px 15px $shadow-box;
+        box-shadow: 2px 2px 15px var(--shadow-box);
         transition: .4s ease;
         border: thin solid transparent;
-        background-color: $background-additional;
+        background-color: var(--background-additional);
         top: 50px;
         width: 100%;
         border-radius: 9px;
@@ -57,8 +57,8 @@
         padding: 1rem 2rem;
         border-radius: 9px;
         &:hover {
-            background-color: $accent;
-            color: $background-additional;
+            background-color: var(--accent);
+            color: var(--background-additional);
         }
     }
 
