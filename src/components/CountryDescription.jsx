@@ -3,6 +3,7 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { ThreeCircles } from 'react-loader-spinner';
+import { goBack } from '../functions/goBack';
 
 import backIcon from '../assets/back-icon.svg';
 import backIconDark from '../assets/back-icon-dark.svg';

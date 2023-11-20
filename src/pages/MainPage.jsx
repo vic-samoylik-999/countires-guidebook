@@ -93,7 +93,6 @@ export default function Main() {
 
   const skeletons = [...Array(12)].map(() => <SkeletonCard key={nanoid()} />);
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
       <div className="wrapper">
         <Header />
         <main className="main">
@@ -116,12 +115,10 @@ export default function Main() {
                 <Filter setCurrentPage={setCurrentPage} />
               </div>
             </SearchAndFilterContext.Provider>
-            {countriesElements.length > 0 && (
-              <div className="countries">
-                {currentCardsSlice.length > 0 ? countriesElements : skeletons}
-              </div>
-            )}
-            {countriesElements.length === 0 && <NoCountriesElementsError />}
+            <div className="countries">
+              {currentCardsSlice.length > 0 ? countriesElements : skeletons}
+            </div>
+            {countriesData && countriesElements.length === 0 && <NoCountriesElementsError />}
             {countriesElements.length > 0 && currentViewWidth < 1065 && (
               <Pagination
                 cardsPerPage={cardsPerPage}
@@ -135,7 +132,6 @@ export default function Main() {
           </div>
         </main>
       </div>
-    </ThemeContext.Provider>
   );
 }
 

@@ -3,14 +3,12 @@ import { checkTheme } from '../functions/checktheme';
 
 import Header from '../components/Header';
 import CountryDescription from '../components/CountryDescription';
-const goBack = () => {
-  const history = window.history;
-  history.back();
-};
+
 
 function CountryPage() {
   return (
     <div className="wrapper">
+      <Header />
       <div className="container">
         <main className="country">
           <CountryDescription />

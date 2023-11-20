@@ -14,7 +14,7 @@ function Header() {
           <Link to="/" className="header__logo">
             <img src={logoLight} alt="Vic's Guidebook of Countries logo" />
           </Link>
-          <button className="header__light-toggle light-toggle" onClick={() => changeTheme()}>
+          <button className="header__light-toggle light-toggle">
             <img className="light-toggle__icon" src={moonIcon} alt="Moon Icon" />
             <p className="light-toggle__text">{'Dark Theme'}</p>
           </button>
