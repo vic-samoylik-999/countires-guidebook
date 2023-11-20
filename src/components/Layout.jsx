@@ -5,7 +5,7 @@ import Header from './Header';
 
 function Layout() {
   return (
-    <div wrapper>
+    <div className="wrapper">
       <Header />
       <main className="main">
         <div className="container">
