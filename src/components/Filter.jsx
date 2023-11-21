@@ -1,6 +1,8 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { SearchAndFilterContext, filterValues } from '../pages/MainPage';
+import { ThemeContext } from './Layout';
+import { checkTheme } from '../functions/checktheme';
 
 import dropdownIcon from '../assets/dropdownArrow.svg';
 import dropdownIconDark from '../assets/dropdownArrow-dark.svg';
@@ -13,7 +15,7 @@ function Filter({ setCurrentPage }) {
     setIsSelecting(false);
     setCurrentPage(1);
   };
-
+  const { theme } = React.useContext(ThemeContext);
   return (
     <section className="filter">
       <div className="filter__holder" onClick={() => setIsSelecting((prev) => !prev)}>
@@ -22,7 +24,7 @@ function Filter({ setCurrentPage }) {
         </p>
         <img
           className={isSelecting ? 'filter__holder-icon active' : 'filter__holder-icon'}
-          src={dropdownIcon}
+          src={checkTheme(theme, dropdownIconDark, dropdownIcon)}
           alt="Dropdown Icon"
         />
       </div>
