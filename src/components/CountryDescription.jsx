@@ -4,6 +4,8 @@ import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { ThreeCircles } from 'react-loader-spinner';
 import { goBack } from '../functions/goBack';
+import { ThemeContext } from './Layout';
+import { checkTheme } from '../functions/checktheme';
 
 import backIcon from '../assets/back-icon.svg';
 import backIconDark from '../assets/back-icon-dark.svg';
@@ -18,6 +20,7 @@ function CountryDescription() {
   const [info, setInfo] = React.useState(null);
   const [slugsLinks, setSlugsLinks] = React.useState([]);
   const navigate = useNavigate();
+  const { theme } = React.useContext(ThemeContext);
 
   React.useEffect(() => {
     async function getInfo() {
@@ -42,7 +45,7 @@ function CountryDescription() {
     getInfo();
   }, [location]);
 
-  const Loader = (
+  const spinner = (
     <ThreeCircles
       height="100"
       width="100"
@@ -55,7 +58,7 @@ function CountryDescription() {
   if (!info) {
     return (
       <main className="loader">
-        <div className="loader__wrapper">{Loader}</div>
+        <div className="loader__wrapper">{spinner}</div>
       </main>
     );
   }
@@ -63,7 +66,7 @@ function CountryDescription() {
   return (
     <>
       <button onClick={() => goBack()} className="country__backBtn">
-        <img src={backIcon} alt="Back icon" />
+        <img src={checkTheme(theme, backIconDark, backIcon)} alt="Back icon" />
         Back
       </button>
       <div className="country__row">
