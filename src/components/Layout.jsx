@@ -9,6 +9,8 @@ const ThemeContext = React.createContext();
 export default function Layout() {
   const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'ligh');
   const changeTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+  const rootElement = document.querySelector('body');
+  rootElement.dataset.theme = theme;
   return (
     <ThemeContext.Provider value={{ theme, setTheme, changeTheme }}>
       <div className="wrapper">

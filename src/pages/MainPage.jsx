@@ -38,12 +38,6 @@ export default function Main() {
   const [cardsPerPage] = React.useState(8);
   const [currentViewWidth, setCurrentViewWidth] = React.useState(window.innerWidth);
   const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light');
-  // Potential Color Theme Toggle
-  const rootElement = document.querySelector('body');
-  rootElement.dataset.theme = theme;
-  const changeTheme = () => {
-    setTheme(() => (theme === 'light' ? 'dark' : 'light'));
-  };
 
   const baseUrl = 'https://restcountries.com/v3.1/';
   let url =
