@@ -17,6 +17,8 @@ function Search() {
         className="search__input"
         name="search-input"
         placeholder="Search for country..."
+        role="presentation"
+        autocomplete="off"
         value={searchValue}
         onChange={(event) => setSearchValue(event.target.value)}
       />
