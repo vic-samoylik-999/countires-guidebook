@@ -31,6 +31,20 @@ const Pagination = ({
     checkMobileScroll(currentViewWidth);
   };
 
+  const createPaginationElement = (number) => (
+    <li
+      key={number}
+      className={number === currentPage ? 'pagination__item active' : 'pagination__item'}
+    >
+      <button
+        onClick={() => paginate(number)}
+        className={number === currentPage ? 'pagination__link active' : 'pagination__link'}
+      >
+        {number}
+      </button>
+    </li>
+  );
+
   return (
     <nav className="pagination">
       <ul className="pagination__list">
@@ -44,28 +58,23 @@ const Pagination = ({
             &lt;
           </button>
         </li>
-        {currentPage > 4 && <li className="pagination__link pagination__link-dots">...</li>}
-        {pageNumbers.map((number, index) => {
-          return (
-            index >= currentPage - 3 &&
-            index <= currentPage + 1 && (
-              <li
-                key={number}
-                className={number === currentPage ? 'pagination__item active' : 'pagination__item'}
-              >
-                <button
-                  onClick={() => paginate(number)}
-                  className={
-                    number === currentPage ? 'pagination__link active' : 'pagination__link'
-                  }
-                >
-                  {number}
-                </button>
-              </li>
-            )
-          );
-        })}
-        {currentPage < pageNumbers.length - 3 && (
+        {currentViewWidth > 540 && currentPage > 4 && (
+          <li className="pagination__link pagination__link-dots">...</li>
+        )}
+        {currentViewWidth > 540
+          ? pageNumbers.map((number, index) => {
+              return (
+                index >= currentPage - 3 &&
+                index <= currentPage + 1 &&
+                createPaginationElement(number)
+              );
+            })
+          : pageNumbers.map((number, index) => {
+              return (
+                index >= currentPage - 2 && index <= currentPage && createPaginationElement(number)
+              );
+            })}
+        {currentViewWidth > 540 && currentPage < pageNumbers.length - 3 && (
           <li className="pagination__link pagination__link-dots">...</li>
         )}
         <li className="pagination__item">
