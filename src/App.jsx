@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="countires-guidebook" element={<Layout />}>
-          <Route index path="countires-guidebook" element={<MainPage />} />
-          <Route path="countires-guidebook/:slug" element={<CountryPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route index path="/" element={<MainPage />} />
+          <Route path=":slug" element={<CountryPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

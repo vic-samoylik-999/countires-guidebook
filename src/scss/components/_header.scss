@@ -8,9 +8,15 @@
         align-items: center;
     }
     &__logo {
-
+        
+        @media (max-width: 505px) {
+            height: 2rem;
+        }
         img {
             height: 3rem;
+            @media (max-width: 505px) {
+                height: 2rem;
+            }
         }
     }
 }

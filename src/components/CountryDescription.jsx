@@ -19,6 +19,7 @@ function CountryDescription() {
   const cca3 = useLocation().state;
   const [info, setInfo] = React.useState(null);
   const [slugsLinks, setSlugsLinks] = React.useState([]);
+  const [isLoadingSlugs, setIsLoadingSlugs] = React.useState(true);
   const navigate = useNavigate();
   const { theme } = React.useContext(ThemeContext);
 
@@ -41,6 +42,7 @@ function CountryDescription() {
         }
       }
       setSlugsLinks(links);
+      setIsLoadingSlugs(false);
     }
     getInfo();
   }, [location]);
@@ -49,6 +51,16 @@ function CountryDescription() {
     <ThreeCircles
       height="100"
       width="100"
+      color="#c5c5c5"
+      visible={true}
+      ariaLabel="three-circles-rotating"
+    />
+  );
+
+  const littleSpinner = (
+    <ThreeCircles
+      height="32"
+      width="302"
       color="#c5c5c5"
       visible={true}
       ariaLabel="three-circles-rotating"
@@ -132,7 +144,9 @@ function CountryDescription() {
           <div className="info__borders">
             <span>Border Countries:</span>
             <div className="info__links">
-              {slugsLinks.length ? (
+              <div className="info__little-spinner">{isLoadingSlugs && littleSpinner}</div>
+              {!isLoadingSlugs &&
+                slugsLinks.length !== 0 &&
                 slugsLinks.map((item) => {
                   const linkSlug = item.official.toLowerCase().split(' ').join('-');
                   return (
@@ -145,10 +159,8 @@ function CountryDescription() {
                       {item.common}
                     </Link>
                   );
-                })
-              ) : (
-                <p>Have no border countries</p>
-              )}
+                })}
+              {!isLoadingSlugs && slugsLinks.length === 0 && <p>Have no border countries</p>}
             </div>
           </div>
         </div>
