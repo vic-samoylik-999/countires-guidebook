@@ -9,6 +9,7 @@ import { checkTheme } from '../functions/checktheme';
 
 import backIcon from '../assets/back-icon.svg';
 import backIconDark from '../assets/back-icon-dark.svg';
+import { checkMobileScroll } from './Pagination';
 
 const client = axios.create({
   baseURL: 'https://restcountries.com/v3.1/',
@@ -22,6 +23,13 @@ function CountryDescription() {
   const [isLoadingSlugs, setIsLoadingSlugs] = React.useState(true);
   const navigate = useNavigate();
   const { theme } = React.useContext(ThemeContext);
+  const [width, setWidth] = React.useState(window.innerWidth);
+
+  React.useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWidth(window.innerWidth);
+    });
+  }, []);
 
   React.useEffect(() => {
     async function getInfo() {
@@ -43,6 +51,7 @@ function CountryDescription() {
       }
       setSlugsLinks(links);
       setIsLoadingSlugs(false);
+      checkMobileScroll(width);
     }
     getInfo();
   }, [location]);

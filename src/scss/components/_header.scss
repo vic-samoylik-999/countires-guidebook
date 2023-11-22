@@ -9,12 +9,12 @@
     }
     &__logo {
         
-        @media (max-width: 505px) {
+        @media (max-width: 768px) {
             height: 2rem;
         }
         img {
             height: 3rem;
-            @media (max-width: 505px) {
+            @media (max-width: 768px) {
                 height: 2rem;
             }
         }
