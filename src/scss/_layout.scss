@@ -48,6 +48,7 @@ button {
     justify-content: space-between;
     align-items: center;
     @media (max-width: 1065px) {
+        margin-top: 2rem;
         flex-direction: column;
         row-gap: 1.2rem;
         .filter {
