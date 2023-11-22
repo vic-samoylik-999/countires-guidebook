@@ -2,14 +2,14 @@ import React from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
-import { ThreeCircles } from 'react-loader-spinner';
-import { goBack } from '../functions/goBack';
 import { ThemeContext } from './Layout';
-import { checkTheme } from '../functions/checktheme';
 
 import backIcon from '../assets/back-icon.svg';
 import backIconDark from '../assets/back-icon-dark.svg';
 import { checkMobileScroll } from './Pagination';
+import { checkTheme } from '../functions/checktheme';
+import { goBack } from '../functions/goBack';
+import { spinner, littleSpinner } from './spinners';
 
 const client = axios.create({
   baseURL: 'https://restcountries.com/v3.1/',
@@ -55,26 +55,6 @@ function CountryDescription() {
     }
     getInfo();
   }, [location]);
-
-  const spinner = (
-    <ThreeCircles
-      height="100"
-      width="100"
-      color="#c5c5c5"
-      visible={true}
-      ariaLabel="three-circles-rotating"
-    />
-  );
-
-  const littleSpinner = (
-    <ThreeCircles
-      height="32"
-      width="302"
-      color="#c5c5c5"
-      visible={true}
-      ariaLabel="three-circles-rotating"
-    />
-  );
 
   if (!info) {
     return (

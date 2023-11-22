@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />} errorElement={<NotFound />}>
           <Route index path="/" element={<MainPage />} />
           <Route path=":slug" element={<CountryPage />} />
           <Route path="*" element={<NotFound />} />

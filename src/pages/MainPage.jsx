@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { Link } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
 import { filterValues } from '../functions/filterValues';
+import { createCountryCardItems } from '../components/createCountryCardItems';
 
 import Search from '../components/Search';
 import Filter from '../components/Filter';
@@ -14,22 +15,6 @@ import NoCountriesElementsError from '../components/NoCountriesElements';
 const SearchAndFilterContext = React.createContext();
 const ThemeContext = React.createContext();
 
-const createCountryCardItems = (item) => {
-  const slug = item.name.official.toLowerCase().split(' ').join('-');
-  return (
-    <Link to={`/${slug}`} state={item.cca3} key={nanoid()} className="country-card">
-      <CountryCard
-        key={nanoid()}
-        title={item.name.official}
-        flag={item.flags.svg}
-        population={item.population}
-        region={item.region}
-        capital={item.capital}
-      />
-    </Link>
-  );
-};
-
 export default function Main() {
   const [countriesData, setCountriesData] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
@@ -37,7 +22,6 @@ export default function Main() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [cardsPerPage] = React.useState(8);
   const [currentViewWidth, setCurrentViewWidth] = React.useState(window.innerWidth);
-  const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light');
 
   const baseUrl = 'https://restcountries.com/v3.1/';
   let url =

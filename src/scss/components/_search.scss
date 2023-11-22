@@ -20,7 +20,6 @@
             transition: .4s ease;
             box-shadow: 2px 2px 15px var(--shadow-box);
             color: var(--text);
-            
             & + .search__loupe {
               opacity: 1;
               transition: .4s ease;
@@ -29,7 +28,6 @@
           @media (max-width: 430px) {
             width: 350px;
             padding: 0 0 0 3rem;
-
           }
     }
     &__loupe {
