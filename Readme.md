@@ -78,4 +78,4 @@ npm install
 npm run dev
 ```
 
-5. Visit http://localhost:[your-port] in your browser to view the application.
+5. Visit [localhost:your-port](http://localhost:5173) in your browser to view the application.

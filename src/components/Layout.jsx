@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
 
 import Header from './Header';
+import Footer from './Footer';
 
 const ThemeContext = React.createContext();
 
@@ -20,6 +21,7 @@ export default function Layout() {
             <Outlet />
           </div>
         </main>
+        <Footer />
       </div>
     </ThemeContext.Provider>
   );
