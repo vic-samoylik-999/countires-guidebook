@@ -6,29 +6,29 @@ Vic's Guidebook of Countries is a React-based project that serves as a comprehen
 
 ## Deployment
 
-[Vic's Guidebook of Countries](https://vic-country-guide.netlify.app/){:target="_blank"}
+[Vic's Guidebook of Countries](https://vic-country-guide.netlify.app/)
 
 ## Table of Contents
 
-- [Technologies Used](#technologies-used){:target="_blank"}
-- [Features](#features){:target="_blank"}
-- [Installation](#installation){:target="_blank"}
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Installation](#installation)
 
 ## Technologies Used
 
 The project is built using the following technologies:
 
-- [React](https://reactjs.org/){:target="_blank"}
-- [React Router 6](https://reactrouter.com/){:target="_blank"}
-- [Sass (SCSS)](https://sass-lang.com/){:target="_blank"}
-- [BEM Methodology](http://getbem.com/){:target="_blank"}
-- [axios](https://axios-http.com/){:target="_blank"}
+- [React](https://reactjs.org/)
+- [React Router 6](https://reactrouter.com/)
+- [Sass (SCSS)](https://sass-lang.com/)
+- [BEM Methodology](http://getbem.com/)
+- [axios](https://axios-http.com/)
 
 Include links to the official documentation for each technology to help users unfamiliar with them.
 
 ## Features
 
-Vic's Guidebook of Countries offers the following features, inspired by the [original challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca){:target="_blank"} and with additional enhancements:
+Vic's Guidebook of Countries offers the following features, inspired by the [original challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca) and with additional enhancements:
 
 - **Displaying Countries Information:** View details such as flags, names, population, capitals, and more for each country.
 
