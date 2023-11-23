@@ -1,8 +1,12 @@
 .footer {
     background-color: var(--background-darker);
-    // background-color: var(--background-additional);
     padding: 1rem;
     box-shadow: 0 3px 7px var(--shadow-box);
+    @media (max-width: 768px) {
+        height: 2rem;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
     &__row {
         display: flex;
         justify-content: space-between;
